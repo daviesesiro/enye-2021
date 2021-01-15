@@ -20,7 +20,7 @@ const Footer = () => (
     >
       Davies Ojurere
     </a>{" "}
-    ~ 2020
+    ~ 2021
   </p>
 );
 const NavBar = () => {

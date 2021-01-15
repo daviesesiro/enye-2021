@@ -1,6 +1,6 @@
 import React from "react";
 
-export const CheckBox: React.FC<{
+const CheckBox: React.FC<{
   label: string;
   className: string;
   value?: any;
@@ -21,3 +21,41 @@ export const CheckBox: React.FC<{
     </label>
   </div>
 );
+
+export const CheckBoxes = ({
+  handleCheckBoxChange,
+}: {
+  handleCheckBoxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
+  const checkboxesData = [
+    {
+      label: "Male",
+      value: "Male",
+      id: "male",
+    },
+    {
+      label: "Male",
+      value: "Male",
+      id: "male",
+    },
+    {
+      label: "Female",
+      value: "Female",
+      id: "female",
+    },
+  ];
+  return (
+    <div>
+      {checkboxesData.map((data, idx) => (
+        <CheckBox
+          key={"checkbox-" + idx}
+          value={data.value}
+          id={data.id}
+          onChange={handleCheckBoxChange}
+          label={data.label}
+          className="mr-3"
+        />
+      ))}
+    </div>
+  );
+};

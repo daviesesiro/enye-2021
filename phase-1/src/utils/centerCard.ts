@@ -1,4 +1,7 @@
-export const centerCard = (card: HTMLDivElement) => {
+export const centerCard = (
+  card: HTMLDivElement,
+  cb?: (threshold: number) => void
+) => {
   const halfWWidth = window.innerWidth * 0.5;
   const halfWHeight = window.innerHeight * 0.5;
 
@@ -12,6 +15,10 @@ export const centerCard = (card: HTMLDivElement) => {
 
   card.style.transition = ".5s ";
   card.style.transform = `translate(${X}px, ${Y}px)`;
+
+  if (cb) {
+    cb(Y);
+  }
 
   setTimeout(() => {
     card.style.transition = ".3s";

@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { response } from "../types";
 
 type state = {
   isFetching: boolean;
   data?: response;
-  error?: any;
+  error?: AxiosError;
 };
 
 export const useFetchProfiles = () => {
@@ -22,7 +22,7 @@ export const useFetchProfiles = () => {
 
         setState((old) => ({ ...old, data: res.data, isFetching: false }));
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
         setState((old) => ({ ...old, error, isFetching: false }));
       }
     };
