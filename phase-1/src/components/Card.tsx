@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { PaymentMethodMap, Profile } from "../types";
-import { BsCaretRightFill, BsX, BsArrowRight } from "react-icons/bs";
+import { BsX, BsArrowRight } from "react-icons/bs";
 import { centerCard } from "../utils/centerCard";
+import { Attribute } from "./CardAttribute";
 
 const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
   const [show, setShow] = useState(false);
@@ -14,9 +15,14 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
   const getRemainingAttrs = () =>
     Object.entries(profile).filter(
       ([key, _]) =>
-        !["Gender", "PaymentMethod", "Email", "FirstName", "LastName"].includes(
-          key
-        )
+        ![
+          "Gender",
+          "PaymentMethod",
+          "Email",
+          "FirstName",
+          "LastName",
+          "FullName",
+        ].includes(key)
     );
 
   useEffect(() => {
@@ -28,6 +34,9 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
       window.addEventListener("scroll", scrollListenter);
     } else {
       cardRef.current!.style.transform = "translate(0)";
+      setTimeout(() => {
+        cardRef.current!.style.zIndex = "unset";
+      }, 200);
     }
 
     return () => window.removeEventListener("scroll", scrollListenter);
@@ -38,16 +47,16 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
       {show && (
         <button
           onClick={() => setShow(false)}
-          className="fixed inset-0 z-40 w-screen bg-black opacity-50"
+          className="opacity-60 fixed inset-0 z-40 w-screen bg-black"
         ></button>
       )}
       <div
         ref={cardRef}
         className={`${
           show
-            ? "z-50 sm:w-max relative max-h-card h-.8screen sm:h-auto overflow-y-auto sm:overflow-y-auto"
+            ? "bg-gray-900 sm:w-max relative max-h-card h-.8screen sm:h-auto overflow-y-auto sm:overflow-y-auto"
             : ""
-        }  group card`}
+        } group card`}
       >
         {show && (
           <button
@@ -57,7 +66,7 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
             <BsX size={30} className="text-red-700" />
           </button>
         )}
-        <h1 className="text-xl text-center">{`${profile.FirstName} ${profile.LastName}`}</h1>
+        <h1 className="text-xl text-center">{profile.FullName}</h1>
         <div className="sm:px-5 px-2 mt-8 font-light text-gray-300">
           <Attribute value={profile.Email} name={"Email"} />
           <Attribute value={profile.Gender} name={"Gender"} />
@@ -66,18 +75,20 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
             name={"Payment Method"}
           />
           {show &&
-            getRemainingAttrs().map(([key, value]) => (
-              <Attribute
-                key={profile.Email + "-atr-" + key}
-                value={value.toString()}
-                name={key}
-              />
-            ))}
+            getRemainingAttrs().map(([key, value]) => {
+              return (
+                <Attribute
+                  key={profile.Email + "-atr-" + key}
+                  value={value.toString()}
+                  name={key}
+                />
+              );
+            })}
         </div>
         {!show && (
           <button
             onClick={() => setShow(true)}
-            className="group-hover:text-purple-50 group-hover:bg-purple-700 rounded-xs block px-2 py-1 mx-auto mt-8 text-purple-900 duration-200 bg-gray-200 rounded-sm"
+            className="group-hover:text-purple-50 group-hover:bg-purple-700 btn btn-secondary block mx-auto mt-8"
           >
             View More <BsArrowRight className="inline" />
           </button>
@@ -86,13 +97,5 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
     </>
   );
 };
-
-const Attribute = ({ name, value }: { name: string; value: string }) => (
-  <p className="sm:block flex flex-col items-center">
-    <BsCaretRightFill className=" sm:inline hidden mr-4 text-purple-500" />
-    <span className="sm:mt-0 mt-2 font-bold text-gray-500">{name}:</span>{" "}
-    {value}
-  </p>
-);
 
 export default Card;

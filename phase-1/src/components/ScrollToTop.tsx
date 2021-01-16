@@ -23,7 +23,7 @@ export const ScrollToTop = () => {
   return (
     <Button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="bottom-10 right-5 fixed p-4 text-white duration-200 bg-purple-700 rounded-md"
+      className="bottom-10 right-5 fixed p-4"
       style={
         show
           ? { visibility: "visible", opacity: 1 }

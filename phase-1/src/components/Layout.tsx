@@ -10,7 +10,7 @@ export const Layout: React.FC = ({ children }) => (
   </>
 );
 const Footer = () => (
-  <p className="md:px-10 md:text-left py-5 mt-16 text-lg font-light text-center text-white bg-gray-900">
+  <footer className="footer">
     Made with 💖 by{" "}
     <a
       className="hover:text-purple-500 hover:shadow-lg ring-purple-300 font-bold text-purple-700"
@@ -21,7 +21,7 @@ const Footer = () => (
       Davies Ojurere
     </a>{" "}
     ~ 2021
-  </p>
+  </footer>
 );
 const NavBar = () => {
   return (

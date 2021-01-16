@@ -12,11 +12,11 @@ export function filterProfiles(
     searchedProfiles = data.records.profiles;
   } else {
     searchedProfiles = new Fuse<Profile>(data.records.profiles, {
-      keys: ["FirstName", "LastName"],
-      threshold: 0.3,
+      keys: ["FullName"],
+      threshold: 0.4,
       shouldSort: true,
     })
-      .search({ $or: [{ FirstName: searchQuery }, { LastName: searchQuery }] })
+      .search(searchQuery)
       .map((p) => p.item); //get only the items
   }
 

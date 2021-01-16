@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import Card from "./components/Card";
 import { useFetchProfiles } from "./utils/useFetchProfiles";
 import { RiLoader4Fill } from "react-icons/ri";
-import { Filter, Profile, response } from "./types";
+import { Filter, PaginatedData, Profile, response } from "./types";
 import { Layout } from "./components/Layout";
 import SearchBar from "./components/SearchBar";
 import { CheckBoxes } from "./components/CheckBox";
@@ -11,6 +10,7 @@ import { PaginationButtons } from "./components/PaginationButtons";
 import { paginate } from "./utils/paginate";
 import { Dropdown } from "./components/Dropdown";
 import { filterProfiles } from "./utils/filterProfiles";
+import { CardList } from "./components/CardList";
 
 const App = () => {
   const { data, isFetching, error } = useFetchProfiles();
@@ -21,10 +21,10 @@ const App = () => {
     paymentMethod: "",
   });
 
-  const [paginated, setPaginated] = useState<{
-    hasMore: boolean;
-    data: Profile[];
-  }>({ data: [], hasMore: false });
+  const [paginated, setPaginated] = useState<PaginatedData>({
+    data: [],
+    hasMore: false,
+  });
 
   const nextPage = () => setCursor((old) => old - 20);
   const prevPage = () => setCursor((old) => old + 20);
@@ -87,11 +87,7 @@ const App = () => {
         </div>
       ) : (
         <>
-          <div className="2xl:grid-cols-flexible-xl md:px-10 grid-cols-flexible place-content-center gap-x-16 gap-y-14 grid items-start mx-auto mt-10">
-            {paginated.data.map((profile) => (
-              <Card key={profile.Email} profile={profile} />
-            ))}
-          </div>
+          <CardList paginatedProfiles={paginated} />
           <PaginationButtons
             cursor={cursor}
             setCursor={setCursor}

@@ -34,14 +34,14 @@ export const CheckBoxes = ({
       id: "male",
     },
     {
-      label: "Male",
-      value: "Male",
-      id: "male",
-    },
-    {
       label: "Female",
       value: "Female",
       id: "female",
+    },
+    {
+      label: "Prefer to Skip",
+      value: "Prefer to Skip",
+      id: "prefer-to-skip",
     },
   ];
   return (

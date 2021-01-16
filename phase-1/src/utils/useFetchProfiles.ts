@@ -20,6 +20,11 @@ export const useFetchProfiles = () => {
           "https://api.enye.tech/v1/challenge/records"
         );
 
+        res.data.records.profiles = res.data.records.profiles.map((p) => ({
+          ...p,
+          FullName: `${p.FirstName} ${p.LastName}`,
+        }));
+
         setState((old) => ({ ...old, data: res.data, isFetching: false }));
       } catch (error) {
         console.log(error.response);

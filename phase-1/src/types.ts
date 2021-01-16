@@ -5,6 +5,7 @@ export interface response {
 }
 
 export type Profile = {
+  FullName: string;
   FirstName: string;
   LastName: string;
   Gender: string;
@@ -25,6 +26,11 @@ export type Profile = {
 export type Filter = {
   genders: string[];
   paymentMethod: string;
+};
+
+export type PaginatedData = {
+  hasMore: boolean;
+  data: Profile[];
 };
 
 export const PaymentMethodMap: { [key: string]: string } = {

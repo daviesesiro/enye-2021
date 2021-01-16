@@ -3,12 +3,49 @@
 @tailwind base;
 @tailwind components;
 
+.btn-primary{
+    @apply bg-purple-700 text-white
+}
+
+.btn{
+    @apply p-2 px-5 duration-200 rounded-md
+}
+
+.btn:disabled {
+    @apply bg-gray-700
+}
+
+
+.btn-primary:hover{
+@apply bg-purple-900 
+}
+
+
+.btn-secondary{
+    @apply text-purple-900 bg-gray-200;
+    @apply hover:text-purple-50 hover:bg-purple-700;
+}
+
+
 .card{  
  @apply px-3 pt-4 pb-8 text-white duration-200 ease-out transform bg-gray-800 rounded-md shadow-md;
 }
 
 .card:hover{
 @apply scale-105 bg-gray-900 shadow-2xl;
+}
+
+.card-list{
+   @apply 2xl:grid-cols-flexible-xl md:px-10 mx-auto mt-10 grid-cols-flexible place-content-center gap-x-16 gap-y-14 grid items-start
+}
+
+.footer{
+    @apply md:px-10 md:text-left py-5 mt-16 text-lg font-light text-center text-white bg-gray-900
+}
+
+.search{
+    @apply w-60 ring-purple-700 inline-block p-2 duration-300 border border-gray-400 rounded-md;
+    @apply focus:ring-2 ring-opacity-50 focus:w-80 focus:border-transparent focus:outline-none;
 }
 
 @tailwind utilities;
