@@ -21,3 +21,15 @@ export type Profile = {
   LastLogin: string;
   PaymentMethod: string;
 };
+
+export type Filter = {
+  genders: string[];
+  paymentMethod: string;
+};
+
+export const PaymentMethodMap: { [key: string]: string } = {
+  cc: "Credit Card",
+  "money order": "Money Order",
+  paypal: "Paypay",
+  check: "Check",
+};

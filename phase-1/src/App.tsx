@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Card from "./components/Card";
 import { useFetchProfiles } from "./utils/useFetchProfiles";
 import { RiLoader4Fill } from "react-icons/ri";
-import { Profile, response } from "./types";
+import { Filter, Profile, response } from "./types";
 import { Layout } from "./components/Layout";
 import SearchBar from "./components/SearchBar";
 import { CheckBoxes } from "./components/CheckBox";
@@ -16,10 +16,7 @@ const App = () => {
   const { data, isFetching, error } = useFetchProfiles();
   const [searchQuery, setSearchQuery] = useState("");
   const [cursor, setCursor] = useState(0);
-  const [filter, setFilter] = useState<{
-    genders: string[];
-    paymentMethod: string;
-  }>({
+  const [filter, setFilter] = useState<Filter>({
     genders: [],
     paymentMethod: "",
   });

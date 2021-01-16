@@ -1,16 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Profile } from "../types";
+import { PaymentMethodMap, Profile } from "../types";
 import { BsCaretRightFill, BsX, BsArrowRight } from "react-icons/bs";
 import { centerCard } from "../utils/centerCard";
 
 const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
   const [show, setShow] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const ButtonRef = useRef<HTMLButtonElement>(null);
 
   const closeCard = (threshold: number) => {
     if (Math.abs(threshold) > 400) setShow(false);
   };
+
+  const getRemainingAttrs = () =>
+    Object.entries(profile).filter(
+      ([key, _]) =>
+        !["Gender", "PaymentMethod", "Email", "FirstName", "LastName"].includes(
+          key
+        )
+    );
+
   useEffect(() => {
     const scrollListenter = () => {
       centerCard(cardRef.current as HTMLDivElement, closeCard);
@@ -19,7 +27,7 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
       centerCard(cardRef.current as HTMLDivElement);
       window.addEventListener("scroll", scrollListenter);
     } else {
-      cardRef.current!.style.transform = "translateX(0)";
+      cardRef.current!.style.transform = "translate(0)";
     }
 
     return () => window.removeEventListener("scroll", scrollListenter);
@@ -53,32 +61,21 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
         <div className="sm:px-5 px-2 mt-8 font-light text-gray-300">
           <Attribute value={profile.Email} name={"Email"} />
           <Attribute value={profile.Gender} name={"Gender"} />
-          <Attribute value={profile.PaymentMethod} name={"Payment Method"} />
+          <Attribute
+            value={PaymentMethodMap[profile.PaymentMethod]}
+            name={"Payment Method"}
+          />
           {show &&
-            Object.entries(profile)
-              .filter(
-                ([key, _]) =>
-                  ![
-                    "Gender",
-                    "PaymentMethod",
-                    "Email",
-                    "FirstName",
-                    "LastName",
-                  ].includes(key)
-              )
-              .map(([key, value], idx) => {
-                return (
-                  <Attribute
-                    key={profile.FirstName + "-atr-" + idx}
-                    value={value.toString()}
-                    name={key}
-                  />
-                );
-              })}
+            getRemainingAttrs().map(([key, value]) => (
+              <Attribute
+                key={profile.Email + "-atr-" + key}
+                value={value.toString()}
+                name={key}
+              />
+            ))}
         </div>
         {!show && (
           <button
-            ref={ButtonRef}
             onClick={() => setShow(true)}
             className="group-hover:text-purple-50 group-hover:bg-purple-700 rounded-xs block px-2 py-1 mx-auto mt-8 text-purple-900 duration-200 bg-gray-200 rounded-sm"
           >
