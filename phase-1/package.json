@@ -24,13 +24,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "cross-env NODE_ENV=production yarn run build:css && yarn run build",
+    "predeploy": "yarn run purge:css && yarn run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "postcss src/styles/tailwindcss.css -o src/styles/main.css",
-    "watch:css": "postcss src/styles/tailwindcss.css -o src/styles/main.css -w"
+    "watch:css": "postcss src/styles/tailwindcss.css -o src/styles/main.css -w",
+    "purge:css": "cross-env NODE_ENV=production yarn run build:css"
   },
   "eslintConfig": {
     "extends": [

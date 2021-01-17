@@ -6,10 +6,10 @@ const SearchBar = ({
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
-    <div className="flex justify-center mt-5">
+    <div>
       <input
         onChange={onChange}
-        className="search"
+        className="search w-full"
         type="search"
         placeholder="Search Patient..."
         name="patient-name"

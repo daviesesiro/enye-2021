@@ -73,17 +73,21 @@ const App = () => {
 
   return (
     <Layout>
-      <SearchBar onChange={(e) => setSearchQuery(e.target.value)} />
+      <div className="filter-container">
+        <p className="text-lg text-purple-700">Filters</p>
 
-      <div className="max-w-md px-3 py-5 mx-auto my-5 bg-white border-2 border-purple-700 border-opacity-50 rounded-md shadow-md">
-        <p className="text-lg">Filters</p>
-        <div className=" flex flex-col mt-2">
-          <span className="block mr-5 text-gray-600">Gender:</span>
+        <div className="mt-2">
+          <p className="mb-1 text-gray-600">Search by name:</p>
+
+          <SearchBar onChange={(e) => setSearchQuery(e.target.value)} />
+        </div>
+        <div className="mt-2">
+          <p className="mb-1 text-gray-600">Gender:</p>
           <CheckBoxes handleCheckBoxChange={handleCheckBoxChange} />
         </div>
 
-        <div className="flex flex-col mt-2">
-          <span className="mr-2 text-gray-600">Payment Method:</span>
+        <div className="mt-2">
+          <p className="mb-1 mr-2 text-gray-600">Payment Method:</p>
           <Dropdown handleChange={handleDropdownChange} />
         </div>
       </div>
