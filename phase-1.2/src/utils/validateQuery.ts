@@ -16,7 +16,11 @@ export function validateQuery(base: any, currency: any) {
   let currencyArr: string[] = [];
 
   if (currency) {
-    currencyArr = (currency as string).toUpperCase().split(",");
+    currencyArr = (currency as string)
+      .toUpperCase()
+      .split(",")
+      .filter((cur) => cur !== ""); // remove empty elements
+
     // making sure all currencies are 3 chars
     currencyArr.forEach((currency) => {
       if (currency.length !== 3)

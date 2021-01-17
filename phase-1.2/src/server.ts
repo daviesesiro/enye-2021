@@ -1,87 +1,51 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
-import axios from "axios";
-import { ExchangeApiResponse } from "./responses";
-import { validateQuery } from "./validateQuery";
+import { validateQuery } from "./utils/validateQuery";
+import { getData } from "./utils/getData";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
-const getData = async (
-  base: string,
-  currencies: string[]
-): Promise<{ errors?: string[]; data?: ExchangeApiResponse }> => {
-  const url = process.env.API_URL as string;
-
-  let data: ExchangeApiResponse | undefined;
-
-  const errors: string[] = [];
-  try {
-    const response = await axios.get<ExchangeApiResponse>(
-      `${url}?base=${base}`
-    );
-    data = response.data;
-  } catch (e) {
-    if (e.response.data.error.includes("Symbol")) {
-      errors.push(
-        (e.response.data.error as string).replace(/Symbols/gi, "Currencies")
-      );
-    } else {
-      errors.push(e.response.data);
-    }
-  }
-
-  // incase there was an error from the request
-  if (errors.length > 0 || !data) return { errors };
-
-  const ratesKeys = Object.keys(data!.rates);
-  currencies.forEach((cur) => {
-    if (!ratesKeys.includes(cur)) {
-      errors.push(`${cur} is not a surported currency`);
-    }
-  });
-
-  if (errors.length > 0) return { errors };
-
-  //filtering the rates for the currencies
-  const rates = ratesKeys
-    .filter((rateKey) => currencies.includes(rateKey))
-    .reduce((obj: { [key: string]: string }, key) => {
-      obj[key] = data!.rates[key];
-      return obj;
-    }, {});
-
-  data!.rates = rates;
-
-  return { data };
-};
-
-app.get("/api/rates", async (req, res) => {
+app.get("/api/rates", async (req, res, next) => {
   const { base, currency } = req.query;
 
   var { errors, currencyArr } = validateQuery(base, currency);
 
   if (errors.length > 0) {
-    return res.status(400).json({ errors, statusCode: 400, status: "Failed" });
+    res.status(400);
+    return next(errors);
   }
 
-  const { data: apiData, errors: apiErrors } = await getData(
-    base as string,
-    currencyArr
-  );
+  let data, apiErrors;
+  try {
+    const result = await getData(base as string, currencyArr);
+    data = result.data;
+    apiErrors = result.errors;
+  } catch (e) {
+    //any error from the external api
+    res.status(500);
+    return next(e.message);
+  }
 
-  if (apiErrors && apiErrors.length > 0)
-    return res
-      .status(400)
-      .json({ errors: apiErrors, statusCode: 400, status: "Failed" });
+  if (apiErrors && apiErrors.length > 0) {
+    res.status(400);
+    return next(apiErrors);
+  }
 
   return res.status(202).json({
-    results: {
-      data: apiData,
-    },
+    results: data,
   });
+});
+
+// error handling
+app.use(function (err: any, _req: Request, res: Response, _next: NextFunction) {
+  if (res.statusCode >= 500) return res.status(res.statusCode).send(err);
+
+  return res
+    .status(res.statusCode)
+    .json({ errors: err, statusCode: res.statusCode });
 });
 
 export default app;

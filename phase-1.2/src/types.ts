@@ -1,7 +1,6 @@
 export type ErrorResponse = {
   errors: string[];
   statusCode: number;
-  status: "Failed";
 };
 
 export type ExchangeApiResponse = {
