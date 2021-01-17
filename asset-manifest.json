@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/enye-2021/static/css/main.5f6c7f95.chunk.css",
-    "main.js": "/enye-2021/static/js/main.285056f3.chunk.js",
-    "main.js.map": "/enye-2021/static/js/main.285056f3.chunk.js.map",
+    "main.css": "/enye-2021/static/css/main.428b171e.chunk.css",
+    "main.js": "/enye-2021/static/js/main.bfb836e6.chunk.js",
+    "main.js.map": "/enye-2021/static/js/main.bfb836e6.chunk.js.map",
     "runtime-main.js": "/enye-2021/static/js/runtime-main.3fa5c5d4.js",
     "runtime-main.js.map": "/enye-2021/static/js/runtime-main.3fa5c5d4.js.map",
     "static/js/2.4a4724ae.chunk.js": "/enye-2021/static/js/2.4a4724ae.chunk.js",
     "static/js/2.4a4724ae.chunk.js.map": "/enye-2021/static/js/2.4a4724ae.chunk.js.map",
     "index.html": "/enye-2021/index.html",
-    "static/css/main.5f6c7f95.chunk.css.map": "/enye-2021/static/css/main.5f6c7f95.chunk.css.map",
+    "static/css/main.428b171e.chunk.css.map": "/enye-2021/static/css/main.428b171e.chunk.css.map",
     "static/js/2.4a4724ae.chunk.js.LICENSE.txt": "/enye-2021/static/js/2.4a4724ae.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3fa5c5d4.js",
     "static/js/2.4a4724ae.chunk.js",
-    "static/css/main.5f6c7f95.chunk.css",
-    "static/js/main.285056f3.chunk.js"
+    "static/css/main.428b171e.chunk.css",
+    "static/js/main.bfb836e6.chunk.js"
   ]
 }
