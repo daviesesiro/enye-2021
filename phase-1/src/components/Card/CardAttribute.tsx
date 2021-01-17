@@ -22,7 +22,7 @@ export const Attribute = ({
 
   return (
     <div className="sm:block sm:py-1 flex flex-col items-center">
-      <span className="sm:w-40 sm:mt-0 inline-block mt-2 text-gray-500">
+      <span className="sm:w-36 sm:mt-0 inline-block mt-2 text-gray-500">
         {name}:
       </span>
       {body}
