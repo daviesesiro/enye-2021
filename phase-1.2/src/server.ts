@@ -79,7 +79,7 @@ app.get("/api/rates", async (req, res) => {
 
   return res.status(202).json({
     results: {
-      apiData,
+      data: apiData,
     },
   });
 });
