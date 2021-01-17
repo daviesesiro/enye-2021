@@ -644,6 +644,23 @@ video {
   --tw-scale-y: 1.05;
 }
 
+.card.open{
+  --tw-bg-opacity: 1;
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+  height: 80vh;
+  max-height: 40rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+@media (min-width: 640px){
+  .card.open{
+    height: auto;
+    overflow-y: auto;
+    width: max-content;
+  }
+}
+
 .card-list{
   display: grid;
   place-content: center;

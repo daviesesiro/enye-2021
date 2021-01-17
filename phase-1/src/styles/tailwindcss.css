@@ -35,6 +35,10 @@
 @apply scale-105 bg-gray-900 shadow-2xl;
 }
 
+.card.open{
+    @apply bg-gray-900 sm:w-max relative max-h-card h-.8screen sm:h-auto overflow-y-auto sm:overflow-y-auto;
+}
+
 .card-list{
    @apply 2xl:grid-cols-flexible-xl md:px-10 mx-auto mt-10 grid-cols-flexible place-content-center gap-x-16 gap-y-14 grid items-start
 }

@@ -50,14 +50,7 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
           className="opacity-60 fixed inset-0 z-40 w-screen bg-black"
         ></button>
       )}
-      <div
-        ref={cardRef}
-        className={`${
-          show
-            ? "bg-gray-900 sm:w-max relative max-h-card h-.8screen sm:h-auto overflow-y-auto sm:overflow-y-auto"
-            : ""
-        } group card`}
-      >
+      <div ref={cardRef} className={`${show ? "show" : ""} group card`}>
         {show && (
           <button
             className="top-5 left-5 absolute"
