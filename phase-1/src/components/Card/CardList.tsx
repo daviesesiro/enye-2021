@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import { PaginatedData } from "../types";
+import { PaginatedData } from "../../types";
 
 export const CardList = ({
   paginatedProfiles,

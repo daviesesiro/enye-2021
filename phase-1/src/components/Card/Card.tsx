@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PaymentMethodMap, Profile } from "../types";
+import { PaymentMethodMap, Profile } from "../../types";
 import { BsX, BsArrowRight } from "react-icons/bs";
-import { centerCard } from "../utils/centerCard";
+import { centerCard } from "../../utils/centerCard";
 import { Attribute } from "./CardAttribute";
-import { Button } from "./Button";
+import { Button } from "../Button";
+import { CardHead } from "./CardHead";
 
 const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
   const [show, setShow] = useState(false);
@@ -119,10 +120,6 @@ const Card: React.FC<{ profile: Profile }> = ({ profile }) => {
       </div>
     </>
   );
-};
-
-const CardHead = ({ title }: { title: string }) => {
-  return <div className="mb-3 text-lg font-bold text-center">{title}</div>;
 };
 
 const HR = () => <div style={{ height: 1 }} className="bg-gray-700" />;

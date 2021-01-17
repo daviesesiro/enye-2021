@@ -4,13 +4,13 @@ import { useFetchProfiles } from "./utils/useFetchProfiles";
 import { RiLoader4Fill } from "react-icons/ri";
 import { Filter, PaginatedData, Profile, response } from "./types";
 import { Layout } from "./components/Layout";
-import SearchBar from "./components/SearchBar";
-import { CheckBoxes } from "./components/CheckBox";
+import SearchBar from "./components/Filters/SearchBar";
+import { CheckBoxes } from "./components/Filters/CheckBox";
 import { PaginationButtons } from "./components/PaginationButtons";
 import { paginate } from "./utils/paginate";
-import { Dropdown } from "./components/Dropdown";
+import { Dropdown } from "./components/Filters/Dropdown";
 import { filterProfiles } from "./utils/filterProfiles";
-import { CardList } from "./components/CardList";
+import { CardList } from "./components/Card/CardList";
 
 const App = () => {
   const { data, isFetching, error } = useFetchProfiles();
