@@ -22,6 +22,7 @@ export const ScrollToTop = () => {
 
   return (
     <Button
+      type="primary"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className="bottom-10 right-5 fixed p-4"
       style={

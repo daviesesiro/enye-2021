@@ -14,12 +14,15 @@ module.exports = {
         ".9screen": "90vh",
         ".8screen": "80vh",
       },
+      width: {
+        card: "calc(100vh - 15rem)",
+      },
       height: {
         ".9screen": "90vh",
         ".8screen": "80vh",
       },
       maxHeight: {
-        card: "40rem",
+        card: "45rem",
       },
     },
   },
@@ -27,6 +30,7 @@ module.exports = {
     extend: {
       backgroundColor: ["responsive", "hover", "focus", "disabled"],
       width: ["responsive", "focus"],
+      animation: ["responsive", "hover"],
     },
   },
   plugins: [],

@@ -6,15 +6,36 @@ export const PaginationButtons: React.FC<{
   data: { hasMore: boolean; data: Profile[] };
   cursor: number;
   setCursor: any;
-  icr: (amount: number) => void;
-  dcr: (amount: number) => void;
-}> = ({ cursor, icr, dcr, data }) => {
+  nextPage: (amount: number) => void;
+  prevPage: (amount: number) => void;
+  scroll?: boolean;
+  pageNumber: number;
+}> = ({ cursor, nextPage, prevPage, data, scroll, pageNumber }) => {
+  const handleClick = (cb: any) => {
+    if (scroll) {
+      window.scrollTo({
+        top: document.getElementById("card-list")!.offsetTop - 50,
+        behavior: "smooth",
+      });
+    }
+    cb();
+  };
   return (
-    <div className=" container mx-auto mt-10 text-center text-white">
-      <Button className="mr-4" disabled={cursor <= 0} onClick={icr}>
+    <div className=" container mx-auto mt-10 text-center">
+      <Button
+        className="mr-4"
+        type="primary"
+        disabled={cursor <= 0}
+        onClick={() => handleClick(prevPage)}
+      >
         Back
       </Button>
-      <Button disabled={!data.hasMore} onClick={dcr}>
+      <span className=" mr-4">{pageNumber}</span>
+      <Button
+        type="primary"
+        disabled={!data.hasMore}
+        onClick={() => handleClick(nextPage)}
+      >
         Next
       </Button>
     </div>

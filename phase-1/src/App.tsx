@@ -16,6 +16,7 @@ const App = () => {
   const { data, isFetching, error } = useFetchProfiles();
   const [searchQuery, setSearchQuery] = useState("");
   const [cursor, setCursor] = useState(0);
+  const [pageNumber, setpageNumber] = useState(1);
   const [filter, setFilter] = useState<Filter>({
     genders: [],
     paymentMethod: "",
@@ -26,12 +27,19 @@ const App = () => {
     hasMore: false,
   });
 
-  const nextPage = () => setCursor((old) => old - 20);
-  const prevPage = () => setCursor((old) => old + 20);
+  const prevPage = () => {
+    setpageNumber((old) => old - 1);
+    setCursor((old) => old - 20);
+  };
+  const nextPage = () => {
+    setpageNumber((old) => old + 1);
+    setCursor((old) => old + 20);
+  };
 
   useEffect(() => {
-    //reset cursor during a search or filter
+    //reset cursor and pageNumber during a search or filter
     setCursor(0);
+    setpageNumber(1);
   }, [searchQuery, filter, setCursor]);
 
   useEffect(() => {
@@ -66,16 +74,20 @@ const App = () => {
   return (
     <Layout>
       <SearchBar onChange={(e) => setSearchQuery(e.target.value)} />
-      <div className="max-w-md mx-auto">
-        <div className="sm:flex-row flex flex-col items-center mt-2">
-          <span className="md:inline block mr-5 text-gray-600">Gender:</span>
+
+      <div className="max-w-md px-3 py-5 mx-auto my-5 bg-white border-2 border-purple-700 border-opacity-50 rounded-md shadow-md">
+        <p className="text-lg">Filters</p>
+        <div className=" flex flex-col mt-2">
+          <span className="block mr-5 text-gray-600">Gender:</span>
           <CheckBoxes handleCheckBoxChange={handleCheckBoxChange} />
         </div>
-        <div className="sm:flex-row flex flex-col items-center mt-2">
+
+        <div className="flex flex-col mt-2">
           <span className="mr-2 text-gray-600">Payment Method:</span>
           <Dropdown handleChange={handleDropdownChange} />
         </div>
       </div>
+
       {error && (
         <div className="flex items-center justify-center h-64">
           <h1 className="text-4xl font-bold text-red-600">{error?.message}</h1>
@@ -87,13 +99,23 @@ const App = () => {
         </div>
       ) : (
         <>
+          <PaginationButtons
+            cursor={cursor}
+            setCursor={setCursor}
+            data={paginated}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            pageNumber={pageNumber}
+          />
           <CardList paginatedProfiles={paginated} />
           <PaginationButtons
             cursor={cursor}
             setCursor={setCursor}
             data={paginated}
-            icr={nextPage}
-            dcr={prevPage}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            scroll
+            pageNumber={pageNumber}
           />
         </>
       )}

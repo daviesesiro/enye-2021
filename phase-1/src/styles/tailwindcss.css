@@ -11,6 +11,10 @@
     @apply p-2 px-5 duration-200 rounded-md
 }
 
+.btn:disabled{
+    @apply hover:bg-gray-800
+}
+
 .btn:disabled {
     @apply bg-gray-700
 }
@@ -32,7 +36,7 @@
 }
 
 .card:hover{
-@apply scale-105 bg-gray-900 shadow-2xl;
+    @apply sm:bg-gray-900 scale-105 bg-black shadow-2xl;
 }
 
 .card.open{

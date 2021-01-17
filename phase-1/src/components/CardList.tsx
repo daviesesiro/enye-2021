@@ -8,7 +8,7 @@ export const CardList = ({
   paginatedProfiles: PaginatedData;
 }) => {
   return (
-    <div className="card-list mt-10">
+    <div id="card-list" className="card-list mt-10">
       {paginatedProfiles.data.map((profile) => (
         <Card key={profile.Email} profile={profile} />
       ))}

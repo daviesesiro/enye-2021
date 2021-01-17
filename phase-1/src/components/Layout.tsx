@@ -25,9 +25,9 @@ const Footer = () => (
 );
 const NavBar = () => {
   return (
-    <header className="p-3 bg-purple-900">
+    <header className="p-3 py-4 bg-purple-900">
       <h1 className="text-2xl font-bold text-center text-white">
-        Enye Challenge Phase 1
+        Profile Records
       </h1>
     </header>
   );

@@ -14,7 +14,7 @@ export const centerCard = (
   const X = halfWWidth - cOffLeft - halfCWidth;
   const Y = halfWHeight - cOffTop - halfCHeight;
 
-  card.style.zIndex = "50";
+  // card.style.zIndex = "50";
   card.style.transform = `translate(${X}px, ${Y}px)`;
 
   if (cb) {

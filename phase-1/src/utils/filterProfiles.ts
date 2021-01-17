@@ -27,7 +27,7 @@ export function filterProfiles(
     );
 
   //filter with payment method
-  if (!["Choose an Option", ""].includes(filter.paymentMethod)) {
+  if (!["All", ""].includes(filter.paymentMethod)) {
     searchedProfiles = searchedProfiles.filter(
       (d) => d.PaymentMethod === filter.paymentMethod
     );
