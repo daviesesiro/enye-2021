@@ -665,7 +665,7 @@ video {
   -webkit-column-gap: 4rem;
           column-gap: 4rem;
   row-gap: 3.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 400px))
+  grid-template-columns: repeat(auto-fit, minmax(270px, 450px))
 }
 
 @media (min-width: 768px){
@@ -1113,6 +1113,11 @@ video {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:scale-105:hover{
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
 }
 
 @keyframes spin{

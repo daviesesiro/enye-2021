@@ -7,7 +7,7 @@ module.exports = {
         sans: ["Open Sans", "sans-serif"],
       },
       gridTemplateColumns: {
-        flexible: "repeat(auto-fit, minmax(270px, 400px))",
+        flexible: "repeat(auto-fit, minmax(270px, 450px))",
         "flexible-xl": "repeat(auto-fit, minmax(350px,500px))",
       },
       minHeight: {

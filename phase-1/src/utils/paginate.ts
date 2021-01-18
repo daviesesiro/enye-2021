@@ -6,7 +6,7 @@ export const paginate = (res: response, cursor: number = 0) => {
 
   const dataPlusOne = res.records.profiles.slice(cursor, take);
   const data = dataPlusOne.slice(0, 20);
-  const hasMore = data.length === 20;
+  const hasMore = dataPlusOne.length === 21;
 
   return { data, hasMore };
 };
