@@ -997,6 +997,11 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.active\:shadow-sm:active{
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 *{
   --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
   --tw-ring-offset-width: 0px;
@@ -1118,6 +1123,11 @@ video {
 .hover\:scale-105:hover{
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
+}
+
+.active\:scale-95:active{
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
 }
 
 @keyframes spin{

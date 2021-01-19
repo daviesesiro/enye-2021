@@ -31,6 +31,8 @@ module.exports = {
       backgroundColor: ["responsive", "hover", "focus", "disabled"],
       width: ["responsive", "focus"],
       animation: ["responsive", "hover"],
+      scale: ["hover", "active"],
+      boxShadow: ["responsive", "hover", "focus", "active"],
     },
   },
   plugins: [],
